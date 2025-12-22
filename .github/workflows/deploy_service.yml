@@ -1,0 +1,26 @@
+name: Deploy Service
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  deploy:
+    name: deploy
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: mathieu-keller/action-stack-deploy-to-portainer@1.0.3
+        with:
+          portainerStackName: 'kingshot-bot'
+          portainerFilePath: 'docker-compose.yaml'
+          portainerHost: ${{ secrets.PORTAINER_HOST }}
+          portainerApiKey: ${{ secrets.PORTAINER_API_KEY }}
+          portainerEnvVars: >
+            {
+              "KIM_TOKEN": "${{ secrets.KIM_TOKEN }}",
+              "RAD_TOKEN": "${{ secrets.RAD_TOKEN }}",
+              "mount_folder": "${{ secrets.MOUNT_FOLDER }}"
+            }
