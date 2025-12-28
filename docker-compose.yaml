@@ -1,6 +1,6 @@
 services:
   kim:
-    image: ghcr.io/kingshot-project/kingshot-discord-bot:v1.4.0
+    image: ghcr.io/kingshot-project/kingshot-discord-bot:v1.4.1
     container_name: kim-kingshot-discord-bot
     volumes:
       - {{mount_folder}}/kim/db:/app/db
@@ -10,7 +10,7 @@ services:
       - UPDATE=0
       - TZ=UTC
   rad:
-    image: ghcr.io/kingshot-project/kingshot-discord-bot:v1.4.0
+    image: ghcr.io/kingshot-project/kingshot-discord-bot:v1.4.1
     container_name: rad-kingshot-discord-bot
     volumes:
       - {{mount_folder}}/rad/db:/app/db
